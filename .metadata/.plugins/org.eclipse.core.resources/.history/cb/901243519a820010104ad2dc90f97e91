@@ -1,0 +1,19 @@
+package V1;
+
+public class Mountain06 {
+	public static void main(String[] args) {
+		
+	}
+	public static void findlargestMountain(int arr[]) {
+		for(int i=1;i<arr.length-1;i++) { 
+			int leftlow=i-1;
+			int rightlow=i+1;
+			if(arr[i]>arr[leftlow] && arr[i]>arr[rightlow]) {
+				
+			}
+			
+		}
+		
+	}
+
+}

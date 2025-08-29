@@ -1,0 +1,33 @@
+package V1;
+
+import java.util.Arrays;
+
+public class Mountain06 {
+	public static void main(String[] args) {
+		int arr[] = { 5, 6, 1, 2, 3, 4, 5, 4, 3, 2, 0, 1, 2, 3, -2, 4 };
+		System.out.println(Arrays.toString(arr));
+		System.out.println(findlargestMountain(arr));
+	}
+	public static Integer findlargestMountain(int arr[]) {
+		int largestMountain = 0;
+		for (int i = 1; i <= arr.length - 2;) {
+			int count = 0;
+			if (arr[i] > arr[i - 1] && arr[i] > arr[i + 1]) {
+				int leftlow = i;
+				while (arr[leftlow] > arr[leftlow - 1]) {
+					count++;
+				}
+				while (arr[i] > arr[i + 1]) {
+					count++;
+					i++;
+				}
+			} else {
+				i++;
+			}
+			largestMountain = Math.max(largestMountain, count);
+		}
+		return largestMountain;
+
+	}
+
+}

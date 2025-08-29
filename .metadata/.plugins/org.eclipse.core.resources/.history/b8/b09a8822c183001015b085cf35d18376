@@ -1,0 +1,60 @@
+package V1;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+public class LongestBand07 {
+
+	public static void main(String[] args) {
+		int arr[]= {1,9,3,0,18,5,2,4,10,7,12,6};
+		System.out.println(findLongestBand3(arr));
+	}
+	
+//	using brute force O(n^2)
+	public static Integer findLongestBand(int arr[]) {
+		for(int i=0;i<arr.length;i++) {
+			for(int j=0;j<arr.length;j++) {
+				int LongestContaingingConsecutivecount=0;
+				if(arr[i]=arr[j]+1)
+			}
+		}
+		
+	}
+	//using shorting O(nlogn)
+	public static Integer findLongestBand1(int arr[]) {
+		
+		
+	}
+//	using Data Structure O(n)
+	public static Integer findLongestBand2(int arr[]) {
+		Map<List<Integer>,Integer> m=new LinkedHashMap<List<Integer>,Integer>();
+		
+		
+	}
+	//otimal solution using hashset Data Structure
+	public static Integer findLongestBand3(int arr[]) {	
+		Set<Integer> s=new HashSet<Integer>();
+		int largest=0;
+		for(int i=0;i<arr.length;i++) {
+			s.add(arr[i]);
+		}
+		for(int i=0;i<arr.length;i++) {
+			int k=arr[i];
+			if(!s.contains(k-1)) {
+				while(s.contains(k+1)) {
+					int count=1;
+					System.out.println("element are==>"+k);
+					count++;
+					System.out.println("count-->"+count);
+					k++;
+				}
+			}
+			largest=Math.max(largest, count);
+		}
+		return largest;
+	}
+}

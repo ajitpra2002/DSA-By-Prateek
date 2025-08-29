@@ -1,0 +1,61 @@
+package V1;
+
+import java.util.Arrays;
+import java.util.Vector;
+
+/*
+ * Triplets Given an array containing N integers, and an number S denoting a target sum. Find all distinct integers that can add up to form target sum. The numbers in each triplet should be ordered in ascending order, and triplets should be ordered too. Return empty array if no such triplet exists.
+ Triplets measns three pair elements
+ int arr[]={1,2,3,4,5,6,7,8,9,15}
+ target=18
+ o/p
+| [[1,2,15],--->sorted order
+|  [3,7,8],
+|  [4,6,8]
+|  [5,6,7]]
+V
+sorted order 
+ */
+//solution
+// 1.using brute force solution O(n^3)
+// 2.step1: sorting O(nlogn)
+//   step2: pick one by one element O(n) 
+//   step 3 after picking one element rest using same as pair sum problem that is two pointer approch O(n)
+//    so over all problem is O(nlogn)+O(n^2) that is O(n^2)
+//     here sorting is not bottleneck problem because nlogn<n^2
+//
+public class Triplets {
+	public static void main(String[] args) {
+		 int arr[]={1,2,3,4,5,6,7,8,9,15};
+		 int target=18;
+		 System.out.println(findTriplets(arr, target));
+	}
+	public static Vector<Vector<Integer>> findTriplets(int arr[],int target){
+		Vector<Vector<Integer>> VV=new Vector<Vector<Integer>>();
+		
+		Arrays.sort(arr);
+		for(int i=0;i<arr.length;i++)
+		{
+			int start=i+1;
+			int end=arr.length-1;
+			Vector<Integer> v=new Vector<Integer>();
+			while(start<end) {
+				if(target<arr[start]+arr[end]+arr[i]) {
+					end--;
+				}
+				else if(target>arr[start]+arr[end]+arr[i]) {
+					start++;
+				}
+				else if(target==arr[start]+arr[end]+arr[i]) {
+					v.add(arr[i]);
+					v.add(arr[start]);
+					v.add(arr[end]);
+					System.out.println("hi");
+				}
+			}
+			VV.add(v);
+		}
+		return VV;
+	}
+	
+}
