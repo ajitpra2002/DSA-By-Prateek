@@ -35,7 +35,7 @@ public class Rains8 {
 	public static void main(String[] args) {
 		int arr[] = { 0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1 };
 //		System.out.println(trapWater(arr));
-		System.out.println(trapWater1(arr));
+		trapWater1(arr);
 
 	}
 //	using prefix array  sol Tc=O(n) S=O(n)
@@ -57,28 +57,17 @@ public class Rains8 {
 		}
 		return water;
 	}
-// using two pointer approch otimal sol O(n) and O(1) 
-	public static int trapWater1(int arr[]) {
-		 int water=0;
-		 int leftPointer=0;
-		 int rightPointer=arr.length-1;
-		 int leftMax=0;
-		 int RightMax=0;
-		 while(leftPointer<rightPointer)
-		 {
-			 leftMax=Math.max(leftMax,arr[leftPointer]);
-			 RightMax=Math.max(RightMax, arr[rightPointer]);
-			 if(leftMax<RightMax) {
-				 water=water+leftMax-arr[leftPointer];
-				 leftPointer++;
-			 }
-			 else {
-				 water += RightMax - arr[rightPointer];
-				 rightPointer--;
-			 }
-			 
-		 }
-		return water;
+//.using two pointer approch otimal sol O(n) and O(1) 
+	public static void trapWater1(int arr[]) {
+		int left=arr[0];
+		int right=arr[arr.length-1];
+		System.out.print(right);
+		for (int i = 1; i < arr.length; i++) {
+//			 left=Math.max(left, arr[i]);
+//			 System.out.print(left);
+			 right=Math.max(right, arr[arr.length-1-i]);
+			 System.out.println(right);
+		}
 	}
 
 }

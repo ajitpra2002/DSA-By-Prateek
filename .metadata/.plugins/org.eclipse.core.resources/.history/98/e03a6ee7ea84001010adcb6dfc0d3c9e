@@ -1,0 +1,61 @@
+package V1;
+
+import java.util.Arrays;
+
+/*
+ * Problem Statement
+You’re given an array arr[] of non-negative integers.
+Each element represents the height of a bar of width 1.
+After rain, water can be trapped between bars.
+Find the total units of trapped water.
+🔹 Example
+Input:
+arr = [0,1,0,2,1,0,1,3,2,1,2,1]
+Visual idea:
+Trapped water = 6
+
+Output:
+
+6
+ */
+public class Rains8 {
+
+	public static void main(String[] args) {
+		int arr[] = { 0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1 };
+		trapWater(arr);
+
+	}
+
+	public static Integer trapWater(int arr[]) {
+
+		int left[] = new int[arr.length];
+		int right[] = new int[arr.length];
+		left[0] = arr[0];
+		int water = 0;
+		for (int i = 1; i < arr.length; i++) {
+			left[i] = Math.max(left[i - 1], arr[i]);
+		}
+		right[arr.length - 1] = arr[arr.length - 1];
+		for (int i = arr.length - 2; i >= 0; i--) {
+			right[i] = Math.max(right[i + 1], arr[i]);
+		}
+		for (int i = 0; i < arr.length; i++) {
+			int min = Math.min(left[i], right[i]) - arr[i];
+			water = water + min;
+		}
+		return water;
+	}
+
+////		arr = [0,1,0,2,1,0,1,3,2,1,2,1]
+//		for(int i=0;i<arr.length;i++)
+//		{ 
+//			int NotTrap=arr.length-arr[i]*arr.length;
+//			if(NotTrap==arr.length) {
+//				continue;
+//			}
+//			else if(NotTrap!=arr.length) {
+//				trapCount=arr.length-
+//			}
+//		}
+
+}

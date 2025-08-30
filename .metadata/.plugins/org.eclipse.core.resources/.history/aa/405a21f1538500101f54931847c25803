@@ -67,7 +67,7 @@ public class Rains8 {
 		 while(leftPointer<rightPointer)
 		 {
 			 leftMax=Math.max(leftMax,arr[leftPointer]);
-			 RightMax=Math.max(RightMax, arr[rightPointer]);
+			 RightMax=Math.max(RightMax, arr[RightMax]);
 			 if(leftMax<RightMax) {
 				 water=water+leftMax-arr[leftPointer];
 				 leftPointer++;
