@@ -1,0 +1,84 @@
+package V1;
+
+import java.util.Arrays;
+
+/*
+ * Problem Statement
+You’re given an array arr[] of non-negative integers.
+Each element represents the height of a bar of width 1.
+After rain, water can be trapped between bars.
+Find the total units of trapped water.
+🔹 Example
+Input:
+arr = [0,1,0,2,1,0,1,3,2,1,2,1]
+Visual idea:
+Trapped water = 6
+
+Output:
+6
+
+solution -:the water is always trap between two heighest bar left heighest bas and right highest bar
+-->so har bar k left heighes or right heighest bar nikalana hoga ,water always jo  left heighest or right heighest
+bar me minmum hoga usk accounding fill hoga or agar use element pe koi chota bar ho to usko v subtract karna hoga tb 
+ja kar har bar pe trap water miley ga.
+each bar trap water is=min(left,right)-arr[i];
+ 
+ 
+  so we have three ways to find heighest left and right bar.
+  1.using brute force O(n^2)
+  2.using prefix array  sol Tc=O(n) S=O(n)
+  3.using two pointer approch otimal sol O(n) and O(1) 
+   
+ */
+public class Rains8 {
+
+	public static void main(String[] args) {
+		int arr[] = { 0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1 };
+//		System.out.println(trapWater(arr));
+		System.out.println(trapWater1(arr));
+
+	}
+//	using prefix array  sol Tc=O(n) S=O(n)
+	public static Integer trapWater(int arr[]) {
+		int left[] = new int[arr.length];
+		int right[] = new int[arr.length];
+		left[0] = arr[0];
+		int water = 0;
+		for (int i = 1; i < arr.length; i++) {
+			left[i] = Math.max(left[i - 1], arr[i]);
+		}
+		right[arr.length - 1] = arr[arr.length - 1];
+		for (int i = arr.length - 2; i >= 0; i--) {
+			right[i] = Math.max(right[i + 1], arr[i]);
+		}
+		for (int i = 0; i < arr.length; i++) {
+			int min = Math.min(left[i], right[i]) - arr[i];
+			water = water + min;
+		}
+		return water;
+	}
+// using two pointer approch otimal sol O(n) and O(1) 
+	public static int trapWater1(int arr[]) {
+		 int water=0;
+		 int leftPointer=0;
+		 int rightPointer=arr.length-1;
+		 int leftMax=0;
+		 int RightMax=0;
+		 while(leftPointer<rightPointer)
+		 {
+			 leftMax=Math.max(leftMax,arr[leftPointer]);
+			 RightMax=Math.max(RightMax, arr[rightPointer]);
+			 if(leftMax<RightMax) {
+				 water=water+leftMax-arr[leftPointer];
+				 leftPointer++;
+			 }
+			 else {
+				 water += RightMax - arr[rightPointer];
+				 rightPointer--;
+			 }
+			 
+		 }
+		return water;
+	}
+
+}

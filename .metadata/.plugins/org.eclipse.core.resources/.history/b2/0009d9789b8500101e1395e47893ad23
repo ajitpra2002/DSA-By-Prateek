@@ -1,0 +1,84 @@
+package V1;
+
+import java.util.Arrays;
+import java.util.Vector;
+
+public class SubArraySort9 {
+
+	public static void main(String[] args) {
+		int arr[] = { 1, 2, 3, 4, 5, 8, 6, 7, 9, 10 };
+		 SubArraySort1(arr);
+	}
+
+	// it will take O(nlogn) due to sorting
+	// and Sc=o(n) due to copy the element in new arrays
+	public static Vector<Integer> SubArraySort(int arr[]) {
+		int arr1[] = Arrays.copyOf(arr, arr.length);
+		Arrays.sort(arr1);
+		Vector<Integer> c = new Vector<Integer>();
+		int start = -1;
+		int end = -1;
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] != arr1[i]) {
+				if (start == -1) {
+					start = i;
+				}
+				end = i;
+			}
+		}
+		c.add(start);
+		c.add(end);
+		return c;
+	}
+//	Vector<Integer>
+	public static void  SubArraySort1(int arr[]) {
+		int n = arr.length;
+		int smallest = Integer.MAX_VALUE;
+		int largest = Integer.MIN_VALUE;
+
+		// Step 1: Find out-of-order elements
+		for (int i = 0; i < n; i++) {
+			if (outOfOrder(arr, i)) {
+				smallest = Math.min(smallest, arr[i]);
+				largest = Math.max(largest, arr[i]);
+			}
+		}
+		System.out.println(smallest);
+		System.out.println(largest);
+
+//		Vector<Integer> result = new Vector<>();
+//
+//		// If already sorted
+//		if (smallest == Integer.MAX_VALUE) {
+//			result.add(-1);
+//			result.add(-1);
+//			return result;
+//		}
+//		int left = 0;
+//		while (left < n && arr[left] <= smallest) {
+//			left++;
+//		}
+//
+//		// Step 3: Find correct position of largest
+//		int right = n - 1;
+//		while (right >= 0 && arr[right] >= largest) {
+//			right--;
+//		}
+//
+//		result.add(left);
+//		result.add(right);
+//		return result;
+	}
+
+	public static boolean outOfOrder(int arr[], int index) {
+		// 1st element se 2nd element bara nahi hona chahiyea
+		if (index == 0) {
+			return arr[index] > arr[index + 1];
+		}
+//		last 
+		if (index == arr.length - 1) {
+			return arr[index] < arr[index - 1];
+		}
+		return arr[index] > arr[index + 1] || arr[index] < arr[index - 1];
+	}
+}

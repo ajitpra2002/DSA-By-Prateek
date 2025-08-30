@@ -64,11 +64,11 @@ public class Rains8 {
 		 int rightPointer=arr.length-1;
 		 int leftMax=0;
 		 int RightMax=0;
-		 while(leftPointer<rightPointer)
+		 while(leftPointer<rightPointer)  
 		 {
-			 leftMax=Math.max(leftMax,arr[leftPointer]);
-			 RightMax=Math.max(RightMax, arr[rightPointer]);
-			 if(leftMax<RightMax) {
+			 leftMax=Math.max(leftMax,arr[leftPointer]);// always water calculated as lower bar 
+			 RightMax=Math.max(RightMax, arr[rightPointer]); // to calculate the right highest bar
+			 if(leftMax<RightMax) { 
 				 water=water+leftMax-arr[leftPointer];
 				 leftPointer++;
 			 }

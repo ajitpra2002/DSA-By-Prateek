@@ -1,0 +1,45 @@
+package V1;
+
+import java.util.Arrays;
+import java.util.Vector;
+
+public class SubArraySort9 {
+
+	public static void main(String[] args) {
+		int arr[] = { 1, 2, 6, 4, 5, 7 };
+		System.out.println(SubArraySort(arr));
+	}
+	//it will take O(nlogn) due to sorting
+	//and Sc=o(n) due to copy the element in new arrays
+	public static Vector<Integer> SubArraySort(int arr[]) {
+		int arr1[] = Arrays.copyOf(arr, arr.length);
+		Arrays.sort(arr1);
+		Vector<Integer> c = new Vector<Integer>();
+		int start = -1;
+		int end = -1;
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] != arr1[i]) {
+				if (start == -1) {
+					start = i;
+				}
+				end = i;
+			}
+		}
+		c.add(start);
+		c.add(end);
+		return c;
+	}
+	public static Vector<Integer> SubArraySort(int arr[]) {
+		int smallest=0;
+		int largest=0;
+		Vector<Integer> c = new Vector<Integer>();
+		for(int i=0;i<arr.length;i++)
+		{
+			if(arr[i-1]>arr[i]&& arr[i]<arr[i+1]) {
+				System.out.println(arr[i]);
+			}
+		}
+		
+		return c;
+	}
+}
